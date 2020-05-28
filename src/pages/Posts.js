@@ -1,7 +1,11 @@
 import React,  {useState, useEffect} from 'react'; 
 import Cookies from 'js-cookie'
-import { render } from '@testing-library/react';
 import uniqid from 'uniqid'
+import { LikeOutlined } from '@ant-design/icons'
+
+
+
+
 
 const Posts = () => {
 
@@ -27,13 +31,38 @@ const Posts = () => {
       })
     }, [])
 
+    const like = (post) => {
+      const data = {
+        like: post.like + 1
+      }
+      fetch(`https://api-minireseausocial.mathis-dyk.fr/posts/${post.id}`, {
+        method: 'put',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+      })
+      .then((response) => response.json())
+      .then((response) => {
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    }
+
     return(
         <div>
           <ul>
             {posts.map((post, id) => {
               if (post.text !== null && post.user !==null) {
                 return (
-                <li key={uniqid()}>{post.text} by <b>{post.user.username}</b></li>
+                <li key={uniqid()}>{post.text} by <b>{post.user.username}</b>
+                <span> {post.like}</span>
+                <button onClick={() => like(post)}> <LikeOutlined /></button>
+               
+                </li>
                 )  
               }        
             })}
