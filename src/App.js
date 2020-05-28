@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Profil from "./pages/Profil";
 import Posts from "./pages/Posts";
 import CheckProfil from "./pages/CheckProfil";
+import Post from "./pages/Post";
 import { AuthContext } from "./context/auth";
 
 function App(props) {
@@ -34,6 +35,9 @@ function App(props) {
           <li>
             <Link to="/posts">Posts Page</Link>
           </li>
+          <li>
+            <Link to="/post">Write a message</Link>
+          </li>
           </ul>
           {/* <Route exact path="/" component={Home} /> */}
           <Route path="/login" component={Login} />
@@ -41,6 +45,7 @@ function App(props) {
           <Route path="/profil" component={Profil} />
           <Route path="/checkprofil" component={CheckProfil} />
           <Route path="/posts" component={Posts} />
+          <Route path="/post" component={Post} />
           {/* <PrivateRoute path="/admin" component={Admin} /> */}
         </div>
       </Router>
